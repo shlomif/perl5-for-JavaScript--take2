@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>perl 5 for JavaScript</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+<!-- codemirror -->
+<script src="js/codemirror.js"></script>
+<link rel="stylesheet" href="css/codemirror.css">
+<script src="js/perl.js"></script>
+<script src="js/jquery.js"></script>
+
+<style type="text/css">
+.sub_out
+{
+    border: red solid 2px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>perl 5 for JavaScript</h1>
+
+<textarea id="code">
+print 'Hello World'
+</textarea>
+
+<button onclick="perl_wrapper()" id="execute">Execute</button>
+
+<button onclick="clear_output(); return false" id="clear_output">Clear</button>
+
+<h4>Output</h4>
+
+<pre id="output"></pre>
+
+<h2>Links and Credits</h2>
+
+<ul>
+<li>
+<p>
+<a href="https://github.com/shlomif/perl5-for-JavaScript">Source Code</a>
+</p>
+</li>
+
+<li>
+<p>
+<a href="https://github.com/kripken/emscripten/wiki">The Emscripten LLVM-to-JavaScript compiler</a>
+</p>
+</li>
+
+<li>
+<p>
+<a href="http://perl-begin.org/">The Perl Beginners Site</a>
+</p>
+</li>
+
+<li>
+<p>
+<a href="https://github.com/themucker">mucker</a> - doing a lot of the
+initial porting work of the perl5 code to Emscripten.
+</p>
+</li>
+</ul>
+
+
+<script>
+var outputElement = $("#output");
+
+function get_init_sub_out() {
+    return $('<div class="sub_out"></div>');
+}
+var sub_output = get_init_sub_out();
+
+var myCodeMirror = CodeMirror.fromTextArea(document.getElementById('code'));
+
+function stop_output() {
+    outputElement.append(sub_output);
+    sub_output = get_init_sub_out();
+
+    return;
+}
+
+var output = function (x) {
+    sub_output.append( String.fromCharCode(x) );
+
+    return;
+};
+
+var input = function () { };
+
+</script>
+
+<script src="js/microperl.js"></script>
+
+<script>
+
+function clear_output() {
+    outputElement.innerHTML = '';
+}
+
+function executePerl(code) {
+    ret = ccall('perl_eval', ['string'], ['string'], [code]);
+}
+
+function perl_wrapper() {
+    executePerl(myCodeMirror.getValue());
+    stop_output();
+    return false;
+}
+
+</script>
+
+</body>
+</html>
+
