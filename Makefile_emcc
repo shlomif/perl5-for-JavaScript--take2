@@ -13,8 +13,8 @@ ifeq ($(CONSOLE),1)
 else
 endif
 
-DEFINES = -DPERL_CORE -DPERL_MICRO -DSTANDARD_C -DPERL_USE_SAFE_PUTENV \
-	  -DNO_MATHOMS
+# DEFINES = -DPERL_CORE -DPERL_MICRO -DSTANDARD_C -DPERL_USE_SAFE_PUTENV -DNO_MATHOMS
+DEFINES = -DPERL_CORE -DSTANDARD_C -DPERL_USE_SAFE_PUTENV -DNO_MATHOMS
 OPTIMIZE =
 CFLAGS = $(DEFINES) $(OPTIMIZE)
 LDFLAGS = $(CCFLAGS)
@@ -38,8 +38,12 @@ $(FIXED_MICROPERL_JS_OUT): $(MICROPERL_JS_OUT)
 $(WEB_REPL_FIXED_MICROPERL_JS_OUT): $(FIXED_MICROPERL_JS_OUT)
 	cp -f $< $@
 
+define EMBED
+$(shell perl emcc-embed-munge.pl "$1" /usr/local/lib/perl5/5.20 `find "$1" -name '*.pm'`)
+endef
+
 $(MICROPERL_JS_OUT): $(O)
-	$(LD) -o $(MICROPERL_JS_OUT) --pre-js microperl-pre.js $(shell perl emcc-embed-munge.pl lib /usr/local/lib/perl5/5.20 `find lib -name '*.pm'`) $(O) $(LDFLAGS) $(LIBS)
+	$(LD) -o $(MICROPERL_JS_OUT) --pre-js microperl-pre.js $(call EMBED,dist/constant/lib) $(call EMBED,cpan/Getopt-Long/lib) $(call EMBED,lib) $(O) $(LDFLAGS) $(LIBS)
 
 plu: $(MICROPERL_JS_OUT) $(FIXED_MICROPERL_JS_OUT) $(WEB_REPL_FIXED_MICROPERL_JS_OUT)
 
