@@ -39,7 +39,7 @@ $(WEB_REPL_FIXED_MICROPERL_JS_OUT): $(FIXED_MICROPERL_JS_OUT)
 	cp -f $< $@
 
 $(MICROPERL_JS_OUT): $(O)
-	$(LD) -o $(MICROPERL_JS_OUT) --pre-js microperl-pre.js $(shell perl emcc-embed-munge.pl lib /usr/local/lib/perl5/5.16 `find lib -name '*.pm'`) $(O) $(LDFLAGS) $(LIBS)
+	$(LD) -o $(MICROPERL_JS_OUT) --pre-js microperl-pre.js $(shell perl emcc-embed-munge.pl lib /usr/local/lib/perl5/5.20 `find lib -name '*.pm'`) $(O) $(LDFLAGS) $(LIBS)
 
 plu: $(MICROPERL_JS_OUT) $(FIXED_MICROPERL_JS_OUT) $(WEB_REPL_FIXED_MICROPERL_JS_OUT)
 
