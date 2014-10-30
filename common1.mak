@@ -1,3 +1,12 @@
+O = uav$(_O) udeb$(_O) udoio$(_O) udoop$(_O) udump$(_O) \
+	uglobals$(_O) ugv$(_O) uhv$(_O) umro$(_O)\
+	umg$(_O) uperlmain$(_O) uop$(_O) ureentr$(_O) uperl_eval$(_O) \
+	upad$(_O) uperl$(_O) uperlio$(_O) uperly$(_O) upp$(_O) \
+	upp_ctl$(_O) upp_hot$(_O) upp_sys$(_O) upp_pack$(_O) upp_sort$(_O) \
+	uregcomp$(_O) uregexec$(_O) urun$(_O) \
+	uscope$(_O) usv$(_O) utaint$(_O) utoke$(_O) \
+	unumeric$(_O) ulocale$(_O) umathoms$(_O) \
+	uuniversal$(_O) uutf8$(_O) uutil$(_O) uperlapi$(_O) ukeywords$(_O) ucaretx$(_O)
 
 generated_headers = uuudmap.h ubitcount.h umg_data.h
 
@@ -151,5 +160,8 @@ uutil$(_O):	$(HE) util.c
 
 uperlapi$(_O):	$(HE) perlapi.c perlapi.h
 	$(CC) $(CCFLAGS) -o $@ $(CFLAGS) perlapi.c
+
+uperl_eval$(_O):	$(HE) perl_eval.c EXTERN.h perl.h
+	$(CC) $(CCFLAGS) -o $@ $(CFLAGS) perl_eval.c
 
 uuudmap.h umg_data.h: ubitcount.h

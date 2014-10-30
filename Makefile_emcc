@@ -1,6 +1,7 @@
 CC = emcc
 LD = $(CC)
-CCFLAGS = -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -std=gnu89 -Wno-error-implicit-function-declaration
+# CCFLAGS = -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -std=gnu89 -Wno-error-implicit-function-declaration
+CCFLAGS = -g --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -std=gnu89 -Wno-error-implicit-function-declaration
 MICROPERL_JS_OUT = plu.js
 FIXED_MICROPERL_JS_OUT = microperl.js
 MINIPERLMAIN = miniperlmain.c
@@ -26,19 +27,9 @@ RUN =
 
 all:	plu
 
-O = uav$(_O) udeb$(_O) udoio$(_O) udoop$(_O) udump$(_O) \
-	uglobals$(_O) ugv$(_O) uhv$(_O) umro$(_O)\
-	umg$(_O) uperlmain$(_O) uop$(_O) ureentr$(_O) \
-	upad$(_O) uperl$(_O) uperlio$(_O) uperly$(_O) upp$(_O) \
-	upp_ctl$(_O) upp_hot$(_O) upp_sys$(_O) upp_pack$(_O) upp_sort$(_O) \
-	uregcomp$(_O) uregexec$(_O) urun$(_O) \
-	uscope$(_O) usv$(_O) utaint$(_O) utoke$(_O) \
-	unumeric$(_O) ulocale$(_O) umathoms$(_O) \
-	uuniversal$(_O) uutf8$(_O) uutil$(_O) uperlapi$(_O) ukeywords$(_O) ucaretx$(_O)
+include common1.mak
 
 WEB_REPL_FIXED_MICROPERL_JS_OUT = web_repl/js/$(FIXED_MICROPERL_JS_OUT)
-
-plu: $(MICROPERL_JS_OUT) $(FIXED_MICROPERL_JS_OUT) $(WEB_REPL_FIXED_MICROPERL_JS_OUT)
 
 $(FIXED_MICROPERL_JS_OUT): $(MICROPERL_JS_OUT)
 	# perl patch-plu-js.pl $< $@
@@ -50,7 +41,7 @@ $(WEB_REPL_FIXED_MICROPERL_JS_OUT): $(FIXED_MICROPERL_JS_OUT)
 $(MICROPERL_JS_OUT): $(O)
 	$(LD) -o $(MICROPERL_JS_OUT) --pre-js microperl-pre.js $(shell perl emcc-embed-munge.pl lib /usr/local/lib/perl5/5.16 `find lib -name '*.pm'`) $(O) $(LDFLAGS) $(LIBS)
 
-include common1.mak
+plu: $(MICROPERL_JS_OUT) $(FIXED_MICROPERL_JS_OUT) $(WEB_REPL_FIXED_MICROPERL_JS_OUT)
 
 ubitcount.h: ugenerate_uudmap$(_X)
 	./ugenerate_uudmap$(_X) $(generated_headers)
