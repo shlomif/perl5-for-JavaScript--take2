@@ -9,7 +9,7 @@
 
 /* Package name      : perl5
  * Source directory  : .
- * Configuration time: Thu Oct 30 20:05:22 IST 2014
+ * Configuration time: Thu Oct 30 21:56:17 IST 2014
  * Configured by     : shlomif
  * Target system     : linux telaviv1.shlomifish.org 3.17.1-desktop-2.mga5 #1 smp sat oct 25 13:48:02 utc 2014 x86_64 x86_64 x86_64 gnulinux 
  */
@@ -689,7 +689,7 @@
  *	This symbol, if defined, indicates to the C program that it should
  *	include <math.h>.
  */
-#define I_MATH		/**/
+/*#define I_MATH		/ **/
 
 /* I_MEMORY:
  *	This symbol, if defined, indicates to the C program that it should
@@ -896,8 +896,8 @@
  *	This symbol contains the ~name expanded version of ARCHLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define ARCHLIB "/usr/lib/perl5/5.20.1"		/**/
-#define ARCHLIB_EXP ARCHLIB
+#define ARCHLIB "/usr/lib/perl5/5.20.1/x86_64-linux"		/**/
+#define ARCHLIB_EXP "/usr/lib/perl5/5.20.1/x86_64-linux"		/**/
 
 /* ARCHNAME:
  *	This symbol holds a string representing the architecture name.
@@ -905,7 +905,7 @@
  *	where library files may be held under a private library, for
  *	instance.
  */
-#define ARCHNAME "i586"		/**/
+#define ARCHNAME "x86_64-linux"		/**/
 
 /* BIN:
  *	This symbol holds the path of the bin directory where the package will
@@ -919,8 +919,8 @@
  *	This symbol, if defined, indicates that we'd like to relocate entries
  *	in @INC at run time based on the location of the perl binary.
  */
-#define BIN "/home/shlomif/apps/perl/bleadperl/bin"	/**/
-#define BIN_EXP "/home/shlomif/apps/perl/bleadperl/bin"	/**/
+#define BIN "/usr/bin"	/**/
+#define BIN_EXP "/usr/bin"	/**/
 #define PERL_RELOCATABLE_INC "undef" 		/**/
 
 /* INTSIZE:
@@ -2439,7 +2439,7 @@
  *	This symbol is defined if using the FILE_ptr macro as an lvalue
  *	to increase the pointer by n leaves File_cnt(fp) unchanged.
  */
-#define USE_STDIO_PTR 	/**/
+/*#define USE_STDIO_PTR 	/ **/
 #ifdef USE_STDIO_PTR
 #define FILE_ptr(fp)	((fp)->_IO_read_ptr)
 /*#define STDIO_PTR_LVALUE 		/ **/
@@ -2583,8 +2583,8 @@
  *	used for semctl IPC_STAT.
  */
 /*#define HAS_UNION_SEMUN	/ **/
-#define USE_SEMCTL_SEMUN	/**/
-#define USE_SEMCTL_SEMID_DS	/**/
+/*#define USE_SEMCTL_SEMUN	/ **/
+/*#define USE_SEMCTL_SEMID_DS	/ **/
 
 /* HAS_VFORK:
  *	This symbol, if defined, indicates that vfork() exists.
@@ -3007,8 +3007,8 @@
  *	This symbol contains the ~name expanded version of PRIVLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define PRIVLIB "/home/shlomif/apps/perl/bleadperl/lib/5.20.1"		/**/
-#define PRIVLIB_EXP "/home/shlomif/apps/perl/bleadperl/lib/5.20.1"		/**/
+#define PRIVLIB "/usr/lib/perl5/5.20.1"		/**/
+#define PRIVLIB_EXP "/usr/lib/perl5/5.20.1"		/**/
 
 /* CAN_PROTOTYPE:
  *	If defined, this macro indicates that the C compiler can handle
@@ -3044,9 +3044,9 @@
  */
 #define HAS_QUAD	/**/
 #ifdef HAS_QUAD
-#   define Quad_t long long	/**/
-#   define Uquad_t unsigned long	long/**/
-#   define QUADKIND 3	/**/
+#   define Quad_t long	/**/
+#   define Uquad_t unsigned long	/**/
+#   define QUADKIND 2	/**/
 #   define QUAD_IS_INT	1
 #   define QUAD_IS_LONG	2
 #   define QUAD_IS_LONG_LONG	3
@@ -3151,8 +3151,8 @@
  *	This symbol contains the ~name expanded version of SITEARCH, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define SITEARCH ARCHLIB
-#define SITEARCH_EXP ARCHLIB
+#define SITEARCH "/usr/lib/perl5/site_perl/5.20.1/x86_64-linux"		/**/
+#define SITEARCH_EXP "/usr/lib/perl5/site_perl/5.20.1/x86_64-linux"		/**/
 
 /* SITELIB:
  *	This symbol contains the name of the private library for this package.
@@ -3174,9 +3174,9 @@
  *	removed.  The elements in inc_version_list (inc_version_list.U) can
  *	be tacked onto this variable to generate a list of directories to search.
  */
-#define SITELIB "/home/shlomif/apps/perl/bleadperl/lib/site_perl/5.20.1"		/**/
-#define SITELIB_EXP "/home/shlomif/apps/perl/bleadperl/lib/site_perl/5.20.1"		/**/
-#define SITELIB_STEM "/home/shlomif/apps/perl/bleadperl/lib/site_perl"		/**/
+#define SITELIB "/usr/lib/perl5/site_perl/5.20.1"		/**/
+#define SITELIB_EXP "/usr/lib/perl5/site_perl/5.20.1"		/**/
+#define SITELIB_STEM "/usr/lib/perl5/site_perl"		/**/
 
 /* Size_t_size:
  *	This symbol holds the size of a Size_t in bytes.
@@ -3730,7 +3730,7 @@
  *	This symbol, if defined, indicates that libm exports _LIB_VERSION
  *	and that math.h defines the enum to manipulate it.
  */
-#define LIBM_LIB_VERSION		/**/
+/*#define LIBM_LIB_VERSION		/ **/
 
 /* HAS_MADVISE:
  *	This symbol, if defined, indicates that the madvise system call is
@@ -3781,7 +3781,7 @@
  *	release 2.2.2 is known to be okay.
  */
 #define HAS_MODFL		/**/
-#define HAS_MODFL_PROTO		/**/
+/*#define HAS_MODFL_PROTO		/ **/
 /*#define HAS_MODFL_POW32_BUG		/ **/
 
 /* HAS_MPROTECT:
@@ -3894,7 +3894,7 @@
  *	in perl.  Users should call Perl_signbit(), which will be #defined to
  *	the system's signbit() function or macro if this symbol is defined.
  */
-#define HAS_SIGNBIT		/**/
+/*#define HAS_SIGNBIT		/ **/
 
 /* HAS_SIGPROCMASK:
  *	This symbol, if defined, indicates that the sigprocmask
@@ -4559,7 +4559,7 @@
  *	is either n or 32*ceil(n/32), especially many little-endians do
  *	the latter.  This is only useful if you have select(), naturally.
  */
-#define SELECT_MIN_BITS 	32	/**/
+#define SELECT_MIN_BITS 	64	/**/
 
 /* ST_INO_SIZE:
  *	This variable contains the size of struct stat's st_ino in bytes.
@@ -4576,7 +4576,7 @@
  *	script to make sure (one hopes) that it runs with perl and not
  *	some shell.
  */
-#define STARTPERL "#!/home/shlomif/apps/perl/bleadperl/bin/perl5.20.1"		/**/
+#define STARTPERL "#!/usr/bin/perl5.20.1"		/**/
 
 /* HAS_STDIO_STREAM_ARRAY:
  *	This symbol, if defined, tells that there is an array
@@ -4630,13 +4630,11 @@
  *	be able to run the resulting executable in a 32-bit CPU at all or
  *	you may need at least to reboot your OS to 64-bit mode.
  */
-#if 0
 #ifndef USE_64_BIT_INT
-#define	USE_64_BIT_INT		/**/
+/*#define	USE_64_BIT_INT		/ **/
 #endif
 #ifndef USE_64_BIT_ALL
-#define	USE_64_BIT_ALL		/**/
-#endif
+/*#define	USE_64_BIT_ALL		/ **/
 #endif
 
 /* USE_DTRACE:
