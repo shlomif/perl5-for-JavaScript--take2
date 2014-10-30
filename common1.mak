@@ -38,6 +38,9 @@ perly.h: perly.y
 uav$(_O):	$(HE) av.c
 	$(CC) $(CCFLAGS) -o $@ $(CFLAGS) av.c
 
+ucaretx$(_O):	$(HE) caretx.c
+	$(CC) $(CCFLAGS) -o $@ $(CFLAGS) caretx.c
+
 udeb$(_O):	$(HE) deb.c
 	$(CC) $(CCFLAGS) -o $@ $(CFLAGS) deb.c
 
