@@ -1,12 +1,12 @@
 CC = emcc
 LD = $(CC)
 CCFLAGS = -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -std=gnu89 -Wno-error-implicit-function-declaration
-PLU_OUT = plu.js
-FIXED_PLU_OUT = microperl.js
+MICROPERL_JS_OUT = plu.js
+FIXED_MICROPERL_JS_OUT = microperl.js
 MINIPERLMAIN = miniperlmain.c
 
 ifeq ($(CONSOLE),1)
-	PLU_OUT = plu.console.js
+	MICROPERL_JS_OUT = plu.console.js
 	MINIPERLMAIN = miniperlmain_bak.c
 	CCFLAGS = $(DEBUG_FLAGS)
 else
@@ -36,19 +36,19 @@ O = uav$(_O) udeb$(_O) udoio$(_O) udoop$(_O) udump$(_O) \
 	unumeric$(_O) ulocale$(_O) umathoms$(_O) \
 	uuniversal$(_O) uutf8$(_O) uutil$(_O) uperlapi$(_O) ukeywords$(_O)
 
-WEB_REPL_FIXED_PLU_OUT = web_repl/js/$(FIXED_PLU_OUT)
+WEB_REPL_FIXED_MICROPERL_JS_OUT = web_repl/js/$(FIXED_MICROPERL_JS_OUT)
 
-plu: $(PLU_OUT) $(FIXED_PLU_OUT) $(WEB_REPL_FIXED_PLU_OUT)
+plu: $(MICROPERL_JS_OUT) $(FIXED_MICROPERL_JS_OUT) $(WEB_REPL_FIXED_MICROPERL_JS_OUT)
 
-$(FIXED_PLU_OUT): $(PLU_OUT)
+$(FIXED_MICROPERL_JS_OUT): $(MICROPERL_JS_OUT)
 	# perl patch-plu-js.pl $< $@
 	cp -f $< $@
 
-$(WEB_REPL_FIXED_PLU_OUT): $(FIXED_PLU_OUT)
+$(WEB_REPL_FIXED_MICROPERL_JS_OUT): $(FIXED_MICROPERL_JS_OUT)
 	cp -f $< $@
 
-$(PLU_OUT): $(O)
-	$(LD) -o $(PLU_OUT) --pre-js microperl-pre.js $(shell perl emcc-embed-munge.pl lib /usr/local/lib/perl5/5.16 `find lib -name '*.pm'`) $(O) $(LDFLAGS) $(LIBS)
+$(MICROPERL_JS_OUT): $(O)
+	$(LD) -o $(MICROPERL_JS_OUT) --pre-js microperl-pre.js $(shell perl emcc-embed-munge.pl lib /usr/local/lib/perl5/5.16 `find lib -name '*.pm'`) $(O) $(LDFLAGS) $(LIBS)
 
 generated_headers = uuudmap.h ubitcount.h umg_data.h
 
