@@ -79,14 +79,18 @@ initial porting work of the perl5 code to Emscripten.
 var outputElement = $("#output");
 
 function get_init_sub_out() {
-    return $('<div class="sub_out"></div>');
+    return $('<textarea></textarea>');
+    // return $('<div class="sub_out"></div>');
 }
 var sub_output = get_init_sub_out();
 
 var myCodeMirror = CodeMirror.fromTextArea(document.getElementById('code'));
 
 function stop_output() {
-    outputElement.append(sub_output);
+    var div_wrap = $('<div class="sub_out"></div>');
+    div_wrap.append(sub_output);
+
+    outputElement.append(div_wrap);
     sub_output = get_init_sub_out();
 
     return;
