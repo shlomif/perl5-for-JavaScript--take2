@@ -39,8 +39,12 @@ define EMBED
 $(shell perl emcc-embed-munge.pl "$1" /usr/lib/perl5/site_perl `find "$1" -name '*.pm'`)
 endef
 
+define EMBED_CONFIG_PL
+$(shell perl emcc-embed-munge.pl "$1" /usr/lib/perl5/site_perl `find "$1" -name 'Config_heavy.pl'`)
+endef
+
 $(MICROPERL_JS_OUT): $(O)
-	$(LD) -o $(MICROPERL_JS_OUT) --pre-js microperl-pre.js $(call EMBED,dist/constant/lib) $(call EMBED,cpan/Getopt-Long/lib) $(call EMBED,lib) $(O) $(LDFLAGS) $(LIBS)
+	$(LD) -o $(MICROPERL_JS_OUT) --pre-js microperl-pre.js $(call EMBED,dist/constant/lib) $(call EMBED,cpan/Getopt-Long/lib) $(call EMBED,lib) $(call EMBED_CONFIG_PL,lib) $(O) $(LDFLAGS) $(LIBS)
 
 plu: $(MICROPERL_JS_OUT) $(FIXED_MICROPERL_JS_OUT) $(WEB_REPL_FIXED_MICROPERL_JS_OUT)
 

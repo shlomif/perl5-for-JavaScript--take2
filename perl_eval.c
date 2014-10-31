@@ -36,6 +36,8 @@ char * perl_eval(char * str) {
 /* Register any extra external extensions */
 
 EXTERN_C void boot_PerlIO__scalar (pTHX_ CV* cv);
+EXTERN_C void boot_List__Util (pTHX_ CV* cv);
+EXTERN_C void boot_Scalar__Util (pTHX_ CV* cv);
 
 static void
 xs_init(pTHX)
@@ -45,4 +47,6 @@ xs_init(pTHX)
     PERL_UNUSED_CONTEXT;
 
     newXS("PerlIO::scalar::bootstrap", boot_PerlIO__scalar, file);
+    newXS("List::Util::bootstrap", boot_List__Util, file);
+    newXS("Scalar::Util::bootstrap", boot_Scalar__Util, file);
 }
