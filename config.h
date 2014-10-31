@@ -9,9 +9,9 @@
 
 /* Package name      : perl5
  * Source directory  : .
- * Configuration time: Thu Oct 30 23:21:44 IST 2014
+ * Configuration time: Fri Oct 31 11:01:50 IST 2014
  * Configured by     : shlomif
- * Target system     : linux telaviv1.shlomifish.org 3.17.1-desktop-2.mga5 #1 smp sat oct 25 13:48:02 utc 2014 x86_64 x86_64 x86_64 gnulinux 
+ * Target system     : linux telaviv1.shlomifish.org 3.17.2-desktop-1.mga5 #1 smp thu oct 30 20:01:11 utc 2014 x86_64 x86_64 x86_64 gnulinux 
  */
 
 #ifndef _config_h_
@@ -864,7 +864,7 @@
  *	feature tests from Configure are generally more reliable.
  */
 #define OSNAME "linux"		/**/
-#define OSVERS "3.17.1-desktop-2.mga5"		/**/
+#define OSVERS "3.17.2-desktop-1.mga5"		/**/
 
 /* MULTIARCH:
  *	This symbol, if defined, signifies that the build
@@ -4494,7 +4494,7 @@
 #endif
 #define	NVSIZE		8		/**/
 #undef	NV_PRESERVES_UV
-#define	NV_PRESERVES_UV_BITS	53
+#define	NV_PRESERVES_UV_BITS	32
 #define	NV_OVERFLOWS_INTEGERS_AT	256.0*256.0*256.0*256.0*256.0*256.0*2.0*2.0*2.0*2.0*2.0
 #define	NV_ZERO_IS_ALLBITS_ZERO
 #if UVSIZE == 8
