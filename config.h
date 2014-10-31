@@ -9,7 +9,7 @@
 
 /* Package name      : perl5
  * Source directory  : .
- * Configuration time: Thu Oct 30 21:56:17 IST 2014
+ * Configuration time: Thu Oct 30 23:21:44 IST 2014
  * Configured by     : shlomif
  * Target system     : linux telaviv1.shlomifish.org 3.17.1-desktop-2.mga5 #1 smp sat oct 25 13:48:02 utc 2014 x86_64 x86_64 x86_64 gnulinux 
  */
@@ -689,7 +689,7 @@
  *	This symbol, if defined, indicates to the C program that it should
  *	include <math.h>.
  */
-/*#define I_MATH		/ **/
+#define I_MATH		/**/
 
 /* I_MEMORY:
  *	This symbol, if defined, indicates to the C program that it should
@@ -2256,7 +2256,7 @@
  *	traditional longjmp() if siglongjmp isn't available.
  *	See HAS_SIGSETJMP.
  */
-#define HAS_SIGSETJMP	/**/
+/*#define HAS_SIGSETJMP	/ **/
 #ifdef HAS_SIGSETJMP
 #define Sigjmp_buf sigjmp_buf
 #define Sigsetjmp(buf,save_mask) sigsetjmp((buf),(save_mask))
@@ -3044,9 +3044,9 @@
  */
 #define HAS_QUAD	/**/
 #ifdef HAS_QUAD
-#   define Quad_t long	/**/
-#   define Uquad_t unsigned long	/**/
-#   define QUADKIND 2	/**/
+#   define Quad_t long long	/**/
+#   define Uquad_t unsigned long long	/**/
+#   define QUADKIND 3	/**/
 #   define QUAD_IS_INT	1
 #   define QUAD_IS_LONG	2
 #   define QUAD_IS_LONG_LONG	3
@@ -3730,7 +3730,7 @@
  *	This symbol, if defined, indicates that libm exports _LIB_VERSION
  *	and that math.h defines the enum to manipulate it.
  */
-/*#define LIBM_LIB_VERSION		/ **/
+// #define LIBM_LIB_VERSION		/**/
 
 /* HAS_MADVISE:
  *	This symbol, if defined, indicates that the madvise system call is
@@ -3781,7 +3781,7 @@
  *	release 2.2.2 is known to be okay.
  */
 #define HAS_MODFL		/**/
-/*#define HAS_MODFL_PROTO		/ **/
+#define HAS_MODFL_PROTO		/**/
 /*#define HAS_MODFL_POW32_BUG		/ **/
 
 /* HAS_MPROTECT:
@@ -3894,7 +3894,7 @@
  *	in perl.  Users should call Perl_signbit(), which will be #defined to
  *	the system's signbit() function or macro if this symbol is defined.
  */
-/*#define HAS_SIGNBIT		/ **/
+#define HAS_SIGNBIT		/**/
 
 /* HAS_SIGPROCMASK:
  *	This symbol, if defined, indicates that the sigprocmask
@@ -4476,12 +4476,12 @@
 #define	I32TYPE		int	/**/
 #define	U32TYPE		unsigned int	/**/
 #ifdef HAS_QUAD
-#define	I64TYPE		long	/**/
-#define	U64TYPE		unsigned long	/**/
+#define	I64TYPE		long long	/**/
+#define	U64TYPE		unsigned long long	/**/
 #endif
 #define	NVTYPE		double		/**/
-#define	IVSIZE		8		/**/
-#define	UVSIZE		8		/**/
+#define	IVSIZE		4		/**/
+#define	UVSIZE		4		/**/
 #define	I8SIZE		1		/**/
 #define	U8SIZE		1		/**/
 #define	I16SIZE		2	/**/
