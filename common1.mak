@@ -1,3 +1,8 @@
+# DEFINES = -DPERL_CORE -DPERL_MICRO -DSTANDARD_C -DPERL_USE_SAFE_PUTENV -DNO_MATHOMS
+DEFINES = -DPERL_CORE -DSTANDARD_C -DPERL_USE_SAFE_PUTENV -DNO_MATHOMS
+OPTIMIZE =
+CFLAGS = $(DEFINES) $(OPTIMIZE)
+
 O = uav$(_O) udeb$(_O) udoio$(_O) udoop$(_O) udump$(_O) \
 	uglobals$(_O) ugv$(_O) uhv$(_O) umro$(_O)\
 	umg$(_O) uperlmain$(_O) uop$(_O) ureentr$(_O) uperl_eval$(_O) \
