@@ -36,7 +36,7 @@ $(WEB_REPL_FIXED_MICROPERL_JS_OUT): $(FIXED_MICROPERL_JS_OUT)
 	cp -f $< $@
 
 define EMBED
-$(shell perl emcc-embed-munge.pl "$1" /usr/local/lib/perl5/5.20 `find "$1" -name '*.pm'`)
+$(shell perl emcc-embed-munge.pl "$1" /usr/lib/perl5/site_perl `find "$1" -name '*.pm'`)
 endef
 
 $(MICROPERL_JS_OUT): $(O)
