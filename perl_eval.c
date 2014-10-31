@@ -38,6 +38,8 @@ char * perl_eval(char * str) {
 EXTERN_C void boot_PerlIO__scalar (pTHX_ CV* cv);
 EXTERN_C void boot_List__Util (pTHX_ CV* cv);
 EXTERN_C void boot_Scalar__Util (pTHX_ CV* cv);
+EXTERN_C void boot_POSIX (pTHX_ CV* cv);
+EXTERN_C void boot_Fcntl (pTHX_ CV* cv);
 
 static void
 xs_init(pTHX)
@@ -49,4 +51,6 @@ xs_init(pTHX)
     newXS("PerlIO::scalar::bootstrap", boot_PerlIO__scalar, file);
     newXS("List::Util::bootstrap", boot_List__Util, file);
     newXS("Scalar::Util::bootstrap", boot_Scalar__Util, file);
+    newXS("POSIX::bootstrap", boot_POSIX, file);
+    newXS("Fcntl::bootstrap", boot_Fcntl, file);
 }

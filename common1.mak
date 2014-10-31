@@ -13,6 +13,8 @@ O = uav$(_O) udeb$(_O) udoio$(_O) udoop$(_O) udump$(_O) \
 	unumeric$(_O) ulocale$(_O) umathoms$(_O) \
 	uuniversal$(_O) uutf8$(_O) uutil$(_O) uperlapi$(_O) ukeywords$(_O) ucaretx$(_O) \
 	u_ext_PerlIO_scalar$(_O) \
+	u_ext_Fcntl$(_O) \
+	u_ext_POSIX$(_O) \
 	u_cpan_ListUtil$(_O)
 
 generated_headers = uuudmap.h ubitcount.h umg_data.h
@@ -176,5 +178,11 @@ u_ext_PerlIO_scalar$(_O):   $(HE) ext/PerlIO-scalar/scalar.c
 
 u_cpan_ListUtil$(_O):  $(HE) cpan/Scalar-List-Utils/ListUtil.c
 	$(CC) $(CCFLAGS) -I. -o $@ $(CFLAGS) -UPERL_CORE cpan/Scalar-List-Utils/ListUtil.c
+
+u_ext_POSIX$(_O):   $(HE) ext/POSIX/POSIX.c
+	$(CC) $(CCFLAGS) -I. -o $@ $(CFLAGS) -UPERL_CORE ext/POSIX/POSIX.c
+
+u_ext_Fcntl$(_O):   $(HE) ext/Fcntl/Fcntl.c
+	$(CC) $(CCFLAGS) -I. -o $@ $(CFLAGS) -UPERL_CORE ext/Fcntl/Fcntl.c
 
 uuudmap.h umg_data.h: ubitcount.h
