@@ -5,6 +5,8 @@
 #include <emscripten.h>
 #endif
 
+static void xs_init (pTHX);
+
 char * perl_eval(char * str) {
     PerlInterpreter *my_perl;
     char *embedding[] = { "", "-e", "0" };
@@ -13,7 +15,7 @@ char * perl_eval(char * str) {
     PERL_SYS_INIT3(&argc,&casted_embedded,(char ***)NULL);
     my_perl = perl_alloc();
     perl_construct(my_perl);
-    perl_parse(my_perl, NULL, 3, embedding, (char **)NULL);
+    perl_parse(my_perl, xs_init, 3, embedding, (char **)NULL);
     PL_exit_flags |= PERL_EXIT_DESTRUCT_END;
 
     SV * ret = eval_pv(str, TRUE);
@@ -29,4 +31,18 @@ char * perl_eval(char * str) {
     PERL_SYS_TERM();
 
     return ret_str;
+}
+
+/* Register any extra external extensions */
+
+EXTERN_C void boot_PerlIO__scalar (pTHX_ CV* cv);
+
+static void
+xs_init(pTHX)
+{
+    static const char file[] = __FILE__;
+    dXSUB_SYS;
+    PERL_UNUSED_CONTEXT;
+
+    newXS("PerlIO::scalar::bootstrap", boot_PerlIO__scalar, file);
 }

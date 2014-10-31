@@ -11,7 +11,8 @@ O = uav$(_O) udeb$(_O) udoio$(_O) udoop$(_O) udump$(_O) \
 	uregcomp$(_O) uregexec$(_O) urun$(_O) \
 	uscope$(_O) usv$(_O) utaint$(_O) utoke$(_O) \
 	unumeric$(_O) ulocale$(_O) umathoms$(_O) \
-	uuniversal$(_O) uutf8$(_O) uutil$(_O) uperlapi$(_O) ukeywords$(_O) ucaretx$(_O)
+	uuniversal$(_O) uutf8$(_O) uutil$(_O) uperlapi$(_O) ukeywords$(_O) ucaretx$(_O) \
+	u_ext_PerlIO_scalar$(_O)
 
 generated_headers = uuudmap.h ubitcount.h umg_data.h
 
@@ -168,5 +169,8 @@ uperlapi$(_O):	$(HE) perlapi.c perlapi.h
 
 uperl_eval$(_O):	$(HE) perl_eval.c EXTERN.h perl.h
 	$(CC) $(CCFLAGS) -o $@ $(CFLAGS) perl_eval.c
+
+u_ext_PerlIO_scalar$(_O):   $(HE) ext/PerlIO-scalar/scalar.c
+	$(CC) $(CCFLAGS) -I. -o $@ $(CFLAGS) -UPERL_CORE ext/PerlIO-scalar/scalar.c
 
 uuudmap.h umg_data.h: ubitcount.h
