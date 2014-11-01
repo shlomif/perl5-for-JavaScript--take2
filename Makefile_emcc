@@ -1,10 +1,9 @@
 CC = emcc
 LD = $(CC)
-# CCFLAGS = -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -std=gnu89 -Wno-error-implicit-function-declaration
-# CCFLAGS = -g --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -std=gnu89 -Wno-error-implicit-function-declaration
-# CCFLAGS = -g --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -s TOTAL_MEMORY=1000000000 -std=gnu89
-# CCFLAGS = -g -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval']" -s VERBOSE=1 -s TOTAL_MEMORY=1000000000 -std=gnu89 -s ASSERTIONS=1
-CCFLAGS = -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval']" -s VERBOSE=1 -s TOTAL_MEMORY=1000000000 -std=gnu89 -s ASSERTIONS=1
+MEM = -s TOTAL_MEMORY=100000000
+
+# CCFLAGS = -g -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval']" -s VERBOSE=1 $(MEM) -std=gnu89 -s ASSERTIONS=1
+CCFLAGS = -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval']" -s VERBOSE=1 $(MEM) -std=gnu89 -s ASSERTIONS=1
 
 MICROPERL_JS_OUT = plu.js
 FIXED_MICROPERL_JS_OUT = microperl.js
