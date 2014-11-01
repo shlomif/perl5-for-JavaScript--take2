@@ -14,7 +14,7 @@ all:	plu
 include common1.mak
 
 plu:	$(O)
-	$(LD) -o $@ $(O) $(LDFLAGS) $(LIBS)
+	$(LD) -o $@ perl_eval_main.c $(O) $(LDFLAGS) $(LIBS)
 
 ubitcount.h: ugenerate_uudmap$(_X)
 	$(RUN) ./ugenerate_uudmap$(_X) $(generated_headers)
