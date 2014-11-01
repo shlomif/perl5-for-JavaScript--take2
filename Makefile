@@ -1,7 +1,7 @@
 LD = $(CC)
-CCFLAGS = -c
+CCFLAGS = -g -c
 MINIPERLMAIN = miniperlmain_bak.c
-LDFLAGS =
+LDFLAGS = -g
 LIBS = -lm -lcrypt
 _O = .o
 ENV = env

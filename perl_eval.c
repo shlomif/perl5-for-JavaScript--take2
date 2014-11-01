@@ -21,7 +21,9 @@ char * perl_eval(char * str) {
     SV * ret = eval_pv(str, TRUE);
     char * ret_str = SvPV_nolen(ret);
     size_t len = strlen(ret_str);
+#if 0
     write (1, ret_str, len);
+#endif
 #if 0
     printf("%s", ret_str);
 #endif
