@@ -110,6 +110,8 @@ var input = function () { };
 
 <script>
 
+var _is_ready = false;
+
 function clear_output() {
     outputElement.innerHTML = '';
 }
@@ -119,12 +121,23 @@ function executePerl(code) {
 }
 
 function perl_wrapper() {
+    if (! _is_ready) {
+        alert('Not ready yet');
+        return;
+    }
     executePerl(myCodeMirror.getValue());
     stop_output();
     return false;
 }
 
-Module['noExitRuntime'] = false;
+Module['noExitRuntime'] = true;
+
+Module['_main'] = function () {
+    _is_ready = true;
+    alert('We are ready');
+
+    return 0;
+};
 
 </script>
 

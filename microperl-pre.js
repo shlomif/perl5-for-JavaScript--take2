@@ -1,8 +1,9 @@
 var Module = eval('Module');
-Module['noInitialRun'] = true;
-Module['noExitRuntime'] = true;
-Module['noFSInit'] = true;
+// Module['noInitialRun'] = true;
+// Module['noExitRuntime'] = true;
+// Module['noFSInit'] = true;
 
+if (true) {
 Module.preRun.push( function () {
         /* No longer needed because emscripten already contains /dev/null */
         if (false) {
@@ -15,4 +16,7 @@ Module.preRun.push( function () {
         FS.init(function(){ return input(); }, function(x) { output(x); }, function(x) { output(x); });
      }
 );
+
+}
+
 Module.print = function(x) { output(x); };

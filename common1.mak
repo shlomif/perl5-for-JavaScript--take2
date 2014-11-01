@@ -5,7 +5,7 @@ CFLAGS = $(DEFINES) $(OPTIMIZE)
 
 O = uav$(_O) udeb$(_O) udoio$(_O) udoop$(_O) udump$(_O) \
 	uglobals$(_O) ugv$(_O) uhv$(_O) umro$(_O)\
-	umg$(_O) uperlmain$(_O) uop$(_O) ureentr$(_O) uperl_eval$(_O) \
+	umg$(_O) uop$(_O) ureentr$(_O) uperl_eval$(_O) \
 	upad$(_O) uperl$(_O) uperlio$(_O) uperly$(_O) upp$(_O) \
 	upp_ctl$(_O) upp_hot$(_O) upp_sys$(_O) upp_pack$(_O) upp_sort$(_O) \
 	uregcomp$(_O) uregexec$(_O) urun$(_O) \
@@ -17,6 +17,9 @@ O = uav$(_O) udeb$(_O) udoio$(_O) udoop$(_O) udump$(_O) \
 	u_ext_POSIX$(_O) \
 	u_cpan_ListUtil$(_O)
 
+# Removed:
+# uperlmain$(_O)
+#
 generated_headers = uuudmap.h ubitcount.h umg_data.h
 
 H = av.h uconfig.h cop.h cv.h embed.h embedvar.h form.h gv.h handy.h \

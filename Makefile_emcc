@@ -2,8 +2,8 @@ CC = emcc
 LD = $(CC)
 # CCFLAGS = -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -std=gnu89 -Wno-error-implicit-function-declaration
 # CCFLAGS = -g --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -std=gnu89 -Wno-error-implicit-function-declaration
-CCFLAGS = -g --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -s TOTAL_MEMORY=1000000000 -std=gnu89
-# CCFLAGS = -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -s TOTAL_MEMORY=1000000000 -std=gnu89
+# CCFLAGS = -g --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval', '_main']" -s VERBOSE=1 -s TOTAL_MEMORY=1000000000 -std=gnu89
+CCFLAGS = -g -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval']" -s VERBOSE=1 -s TOTAL_MEMORY=1000000000 -std=gnu89 -s ASSERTIONS=1
 
 MICROPERL_JS_OUT = plu.js
 FIXED_MICROPERL_JS_OUT = microperl.js
@@ -45,10 +45,16 @@ define EMBED_CONFIG_PL
 $(shell perl emcc-embed-munge.pl "$1" /usr/lib/perl5/site_perl `find "$1" -name 'Config_heavy.pl'`)
 endef
 
-$(MICROPERL_JS_OUT): $(O)
-	$(LD) -o $(MICROPERL_JS_OUT) --pre-js microperl-pre.js $(call EMBED,dist/constant/lib) $(call EMBED,cpan/Getopt-Long/lib) $(call EMBED,lib) $(call EMBED_CONFIG_PL,lib) $(O) $(LDFLAGS) $(LIBS)
+PRE_JS = --pre-js microperl-pre.js
+# PRE_JS =
 
-plu: $(MICROPERL_JS_OUT) $(FIXED_MICROPERL_JS_OUT) $(WEB_REPL_FIXED_MICROPERL_JS_OUT)
+$(MICROPERL_JS_OUT): $(O)
+	$(LD) -o $(MICROPERL_JS_OUT) $(PRE_JS) $(call EMBED,dist/constant/lib) $(call EMBED,cpan/Getopt-Long/lib) $(call EMBED,lib) $(call EMBED_CONFIG_PL,lib) $(O) $(LDFLAGS) $(LIBS)
+
+plu: $(MICROPERL_JS_OUT) $(FIXED_MICROPERL_JS_OUT) $(WEB_REPL_FIXED_MICROPERL_JS_OUT) web_repl/plu.js.mem
+
+web_repl/plu.js.mem: plu.js.mem
+	cp -f $< $@
 
 ubitcount.h: ugenerate_uudmap$(_X)
 	./ugenerate_uudmap$(_X) $(generated_headers)
