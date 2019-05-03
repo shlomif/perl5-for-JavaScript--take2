@@ -1,6 +1,6 @@
 CC = emcc
 LD = $(CC)
-MEM = -s TOTAL_MEMORY=1000000000
+MEM = -s TOTAL_MEMORY=$$((64 * 1024 * 1024))
 
 # CCFLAGS = -g -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval']" -s VERBOSE=1 $(MEM) -std=gnu89 -s ASSERTIONS=1
 CCFLAGS = -O2 --closure 0 -s EXPORTED_FUNCTIONS="['_perl_eval']" -s VERBOSE=1 $(MEM) -std=gnu89 -s ASSERTIONS=1
