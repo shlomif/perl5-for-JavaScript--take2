@@ -1,3 +1,7 @@
+== Note!!
+
+This project was probably largely superseded by https://github.com/haukex/webperl[webperl].
+
 == Live
 
 * http://www.shlomifish.org/microperl-web-repl-v1/repl.html
